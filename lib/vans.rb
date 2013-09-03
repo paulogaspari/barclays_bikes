@@ -4,7 +4,12 @@ class Van
 	end
 
 
-	def asked_for_pickup
+	def asked_for_pickup(quantity)
+		true
+	end
+
+	def returning_bike(quantity)
+		true
 	end
 
 	def pickingup_bike_at_station
@@ -12,3 +17,9 @@ class Van
 
 
 end
+
+
+# stock - number of bikes being transported
+# bikes delivered
+# bikes picked up
+#
