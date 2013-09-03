@@ -18,7 +18,7 @@ class Users
 
 	end 
 
-	def break_bike(quantity, bike_ref)
+	def break_bike(quantity)
 		@broken_bikes += quantity
 		# change the status of the bike to broken
 	end 

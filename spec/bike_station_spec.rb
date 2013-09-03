@@ -6,16 +6,16 @@ describe BikeStation do
 
 
 	it 'should have 20 bike spaces' do
-		expect(bikestation.slots_in_bikestation).to eq (20)
+		expect(bikestation.slots_in_bikestation).to eq (10)
 	end
 
 	it 'bikes plus empty spaces should equal 20' do 
-		expect(bikestation.sum_of_empty_spaces_and_bikes).to eq (20)
+		expect(bikestation.sum_of_empty_spaces_and_bikes).to eq (10)
 	end
 
 
 	it 'has 20 bikes at start' do 
-		expect(bikestation.number_of_bikes_in_bikestation).to eq (20)
+		expect(bikestation.number_of_bikes_in_bikestation).to eq (10)
 	end
 
 	it 'should have a van associated with it' do
@@ -27,7 +27,7 @@ describe BikeStation do
 
 		it 'should have 19 bikes available' do	
 			bikestation.rent_bike(1)
-			expect(bikestation.number_of_bikes_in_bikestation).to eq (19)
+			expect(bikestation.number_of_bikes_in_bikestation).to eq (9)
 		end
 
 		it 'should have one empty space' do 
@@ -39,7 +39,7 @@ describe BikeStation do
 			bikestation.rent_bike(1)
 			bikestation.return_bike(1)
 			expect(bikestation.number_of_empty_spaces).to eq (0)
-			expect(bikestation.number_of_bikes_in_bikestation).to eq (20)
+			expect(bikestation.number_of_bikes_in_bikestation).to eq (10)
 		end
 	end 
 
@@ -53,7 +53,7 @@ describe BikeStation do
 
 		it 'should decrease the number of available bikes' do
 			bikestation.classify_as_broken
-			expect(bikestation.number_of_bikes_available).to eq (19)
+			expect(bikestation.number_of_bikes_available).to eq (9)
 		end
 
 		it 'should not increase the number of empty spaces' do

@@ -6,7 +6,8 @@ class BikeStation
 
 
 	def initialize(van)
-		@number_of_bikes_available = 20
+		@bike_station_array = [Bike.new, Bike.new, Bike.new, Bike.new, Bike.new, Bike.new, Bike.new, Bike.new, Bike.new, Bike.new, ]
+		@number_of_bikes_available = 10
 		# this is the number of bikes that can be rented at a given station
 		@number_of_bikes_broken = 0
 		#  this is the number of bikes that are broken and cannot be rentes
