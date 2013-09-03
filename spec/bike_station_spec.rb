@@ -32,7 +32,6 @@ describe BikeStation do
 
 		it 'should have one empty space' do 
 			bikestation.rent_bike(1)
-
 			expect(bikestation.number_of_empty_spaces).to eq (1)
 		end
 
@@ -68,8 +67,6 @@ describe BikeStation do
 			bikestation.request_pickup_broken_bike
 		end
 	end
-
-
 
 
 	context ' a broken bike gets picked up by the van' do
