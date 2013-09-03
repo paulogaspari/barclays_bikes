@@ -1,31 +1,61 @@
 require_relative '../lib/vans' 
 
-describe BikeStation do
+describe Van do
 	let(:van) { Van.new }
 
 
-	it 'should have one bike being transported to the garage' do
-		expect(van.asked_for_pickup(1)).to be_true
+	it 'doesnt have bikes at start' do
+		expect(van.num_empty_spaces).to eq(10)
 	end
 
-	it 'one bike has been dropped off at the garage' do
+	it 'should pick up one bike from bikestation, and have one broken bike being transported' do
+		van.asked_for_pickup(1)
+		expect(van.num_bikes_to_repair).to eq (1)
+		expect(van.num_empty_spaces).to eq(9)
+	end
 
+	it 'should drop one bike at bikestation, and have one more empty space and one less repaired bike' do 
+		van.asked_for_pickup(1)
+		van.returning_bike(1)
+		expect(van.num_empty_spaces).to eq(10)
+		expect(van.num_bikes_repaired).to eq (0)
+	end 
+
+	it 'should drop bike at garage and have one more empty space and one less broken bike' do
+		van.asked_for_pickup(1)
+		van.returning_bike(1)
+		expect(van.num_empty_spaces).to eq(10)
+		expect(van.num_bikes_to_repair).to eq (0)
 	end 
 	
-	it 'should have one bike being transported to the bikestation' do 
-		expect(van.returning_bike(1)).to be_true
-	end 
 
-	it 'one bike has been dropped off to the station' do
-	end
 
+
+
+
+
+	# context 'when picking up  bikes from bikestation and then returning them, the BIKESTATION:' do
+
+	# 	it 'should have one more empty space when picking up a bike and one less broken bike' do
+	# 	end
+
+	# 	it ' should have one less empty space and 1 more available bike to rent when a bike is delivered' do
+	# 	end
+
+
+	# end
+
+
+	# context 'when delivering and picking up bikes from the garage, the GARAGE:' do
+
+	# 	it 'should have one more bike to repair in stock when bike is delivered' do
+	# 	end
+
+	# 	it 'should have one less bike repaired in stock when a bike is being picked up' do
+	# 	end
+
+	# end
 
 
 
 end
-
-
-# test if it has bikes being transported to the garage
-# test if it has bukes being transported back to the station
-# test that the bike has been delivered to the garage
-# test that the bike has been delivered to the bike station
