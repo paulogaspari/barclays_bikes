@@ -2,9 +2,7 @@ require_relative 'vans'
 
 class BikeStation
 
-	attr_reader :number_of_bikes_available, :van, :number_of_empty_spaces
-
-
+	attr_reader :number_of_bikes_available, :van, :number_of_empty_spaces, :bikes
 
 
 	def initialize(van)
@@ -14,7 +12,10 @@ class BikeStation
 		#  this is the number of bikes that are broken and cannot be rentes
 		@number_of_empty_spaces = 0
 		# this is the number of empty spaces in the bike station at a given moment
+
 		@van = van
+		# @bikes = [Bike.new, Bike.new, Bike.new('ABC1234', 'broken')]
+
 		# This is the van that is associated with this bike station. Each station
 		# has a dedicated van.
 	end
@@ -39,6 +40,7 @@ class BikeStation
 	def rent_bike(quantity_taken)
 		@number_of_bikes_available -= quantity_taken
 		@number_of_empty_spaces += quantity_taken
+		# return @bikes.last
 	end
 
 	def return_bike(quantity_returned)

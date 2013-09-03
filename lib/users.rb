@@ -18,17 +18,18 @@ class Users
 
 	end 
 
-	def break_bike(quantity)
+	def break_bike(quantity, bike_ref)
 		@broken_bikes += quantity
 		# change the status of the bike to broken
 	end 
 
-	def return_broken_bike(quantity) #change name to return_bike
+	def return_broken_bike(quantity, bike_station)
 			@bikes_in_use -= quantity
 			@broken_bikes -= quantity
 	end 
 
-	def return_good_bike(quantity)
+	def return_good_bike(quantity, bike_station)
+		bike_station.return_bike(quantity)
 		@bikes_in_use -= quantity
 	end
 

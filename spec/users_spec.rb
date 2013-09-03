@@ -3,7 +3,8 @@ require_relative '../lib/users'
 
 describe Users do
 	let(:users) { Users.new }
-	let(:bikestation) {double :bikestation, {:rent_bike => nil} }
+	let(:bikestation) {double :bikestation, {:rent_bike => nil, :return_bike => nil} }
+	let(:bike) {double :bike, {:change_bike_status => 'broken'} }
 
 
 	it 'should have one bike in use' do
@@ -18,26 +19,30 @@ describe Users do
 
 	it 'should return one broken bike' do 
 		users.bike_rented(1, bikestation)
-		users.return_broken_bike(1)
+		users.return_broken_bike(1, bikestation)
 		expect(users.bikes_in_use).to eq (0)
 	end 
 
-	it ' should press the "its broken" button in the bike station upon return if the bike is broken' do
-	end
+	# it ' should press the "its broken" button in the bike station upon return if the bike is broken' do
+	# 	expect(bike).to receive :change_bike_status
+	# 	expect
+	# end
 
 	it 'should return one bike undamaged' do 
 		users.bike_rented(1, bikestation)
-		users.return_good_bike(1)
+		users.return_good_bike(1, bikestation)
 		expect(users.bikes_in_use).to eq (0)
 	end
 
 	it ' notifies the bike station when he rents a bike' do 
 		expect(bikestation).to receive :rent_bike
-
 		users.bike_rented(1, bikestation)
 	end
 
-
+	it ' notifies the bike station when he returns a bike' do 
+		expect(bikestation).to receive :return_bike
+		users.return_good_bike(1, bikestation)
+	end
 
 
 
