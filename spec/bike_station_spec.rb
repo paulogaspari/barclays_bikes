@@ -1,7 +1,8 @@
 require_relative '../lib/bike_station' 
 
 describe BikeStation do
-	let(:bikestation) { BikeStation.new}
+	let(:van) { double(:van) }
+	let(:bikestation) { BikeStation.new(van) }
 
 
 	it 'should have 20 bike spaces' do
@@ -15,6 +16,10 @@ describe BikeStation do
 
 	it 'has 20 bikes' do 
 		expect(bikestation.number_of_bikes).to eq (20)
+	end
+
+	it 'should have a van associated with it' do
+		expect(bikestation.van).to eq van
 	end
 
 
@@ -40,24 +45,42 @@ describe BikeStation do
 	end 
 
 
-	context ' a bike gets returned broken'
+	context ' a bike gets returned broken' do
 
-	it 'should classify the bike as broken when the user presses the broken button' do
-		# bikestation.user_presses_broken_button(1)
-		expect(bikestation.classify_as_broken(1)).to be_true
+		it 'should classify the bike as broken when the user presses the broken button' do
+			# bikestation.user_presses_broken_button(1)
+			expect(bikestation.classify_as_broken).to be_true
+		end
+
+		it 'should decrease the number of available bikes' do
+			bikestation.classify_as_broken
+			expect(bikestation.number_of_bikes_available).to eq (19)
+		end
+
+		it 'should not increase the number of empty spaces' do
+			bikestation.classify_as_broken
+			expect(bikestation.number_of_empty_spaces).to eq (0)
+		end
+
+
+		it 'should contact the van to pick up the bike' do
+			expect(van).to receive :asked_for_pickup
+			bikestation.request_pickup_broken_bike
+		end
 	end
 
-	it 'should decrease the number of available bikes, without increasing the number of empty spaces' do
-        
-	end
 
-	it 'should contact the van to pick up the bike' do
-         
-	end
 
 
 	context ' a broken bike gets picked up by the van' do
+
+		it 'should increase one empty space in the bike station' do
+		bikestation.classify_as_broken
+		expect(bikestation.number_of_empty_spaces).to eq(19)
+		end
 	end
+
+
 
 
 
