@@ -3,7 +3,7 @@ require_relative 'bike'
 
 class BikeStation
 
-	attr_reader :number_of_bikes_available, :van, :number_of_empty_spaces, :bikes
+	attr_reader :biciclet, :van, :number_of_slots
 
 
 	def initialize(van)

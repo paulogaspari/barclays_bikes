@@ -4,12 +4,11 @@ require_relative 'bike'
 
 class Users 
 
-	attr_reader :bikes_in_use, :broken_bikes
+	attr_reader :bikes_in_use
 
 
 	def initialize 
 		@bikes_in_use = []
-
 	end
 
 	def bike_rented(bike_station)
@@ -35,4 +34,4 @@ class Users
 
 end
 
-# central_bike_station = BikeStation.new
+
