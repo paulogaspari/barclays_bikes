@@ -1,4 +1,6 @@
 require_relative 'bike_station'
+require_relative 'bike'
+
 
 class Users 
 
@@ -6,21 +8,16 @@ class Users
 
 
 	def initialize 
-
-		@bikes_in_use = 0
-		@broken_bikes = 0
+		@bikes_in_use = []
 
 	end
 
-	def bike_rented(quantity, bike_station)
-		bike_station.rent_bike(quantity)
-		@bikes_in_use += quantity
-
+	def bike_rented(bike_station = 'ref001')
+		@bikes_in_use. push(Bike.new) #bike_station.rent_bike(bike_station) #add the bike object from bikestation_rentbike into the array
 	end 
 
-	def break_bike(quantity)
-		@broken_bikes += quantity
-		# change the status of the bike to broken
+	def break_bike
+		@bikes_in_use.last.change_bike_status('broken') #change the satus of the bike in that array to broken
 	end 
 
 	def return_broken_bike(quantity, bike_station)
@@ -28,8 +25,8 @@ class Users
 			@broken_bikes -= quantity
 	end 
 
-	def return_good_bike(quantity, bike_station)
-		bike_station.return_bike(quantity)
+	def return_good_bike(bike_station)
+		bike_station.return_bike(bike_station)
 		@bikes_in_use -= quantity
 	end
 

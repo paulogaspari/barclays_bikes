@@ -5,16 +5,8 @@ describe BikeStation do
 	let(:bikestation) { BikeStation.new(van) }
 
 
-	it 'should have 20 bike spaces' do
-		expect(bikestation.slots_in_bikestation).to eq (10)
-	end
 
-	it 'bikes plus empty spaces should equal 20' do 
-		expect(bikestation.sum_of_empty_spaces_and_bikes).to eq (10)
-	end
-
-
-	it 'has 20 bikes at start' do 
+	it 'has 10 bikes at start' do 
 		expect(bikestation.number_of_bikes_in_bikestation).to eq (10)
 	end
 
@@ -26,18 +18,18 @@ describe BikeStation do
 	context 'someone rents one bike and after someone returns another' do
 
 		it 'should have 9 bikes available' do	
-			bikestation.rent_bike(1)
+			bikestation.rent_bike
 			expect(bikestation.number_of_bikes_in_bikestation).to eq (9)
 		end
 
 		it 'should have one empty space' do 
-			bikestation.rent_bike(1)
+			bikestation.rent_bike
 			expect(bikestation.number_of_empty_spaces).to eq (1)
 		end
 
 		it 'should have no empty spaces after someone returns a bike' do
-			bikestation.rent_bike(1)
-			bikestation.return_bike(1)
+			bikestation.rent_bike
+			bikestation.return_bike
 			expect(bikestation.number_of_empty_spaces).to eq (0)
 			expect(bikestation.number_of_bikes_in_bikestation).to eq (10)
 		end
@@ -47,7 +39,6 @@ describe BikeStation do
 	context ' a bike gets returned broken' do
 
 		it 'should classify the bike as broken when the user presses the broken button' do
-			# bikestation.user_presses_broken_button(1)
 			expect(bikestation.classify_as_broken).to be_true
 		end
 

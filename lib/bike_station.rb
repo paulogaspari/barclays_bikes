@@ -1,4 +1,5 @@
 require_relative 'vans'
+require_relative 'bike'
 
 class BikeStation
 
@@ -6,56 +7,43 @@ class BikeStation
 
 
 	def initialize(van)
-		@number_of_bikes_available = 10
-		@biciclet = [Bike.new] * @number_of_bikes_available
+		@number_of_slots = 10
+		@biciclet = [Bike.new, Bike.new, Bike.new, Bike.new, Bike.new, Bike.new, Bike.new, Bike.new, Bike.new, Bike.new, ] 
 		# this is the number of bikes that can be rented at a given station
-		@number_of_bikes_broken = 0
-		#  this is the number of bikes that are broken and cannot be rentes
-		@number_of_empty_spaces = 0
-		# this is the number of empty spaces in the bike station at a given moment
-
 		@van = van
-		# @bikes = [Bike.new, Bike.new, Bike.new('ABC1234', 'broken')]
-
 		# This is the van that is associated with this bike station. Each station
 		# has a dedicated van.
 	end
 
 
 	def number_of_bikes_in_bikestation
-	#  This is the total number of bikes at a given station
+		#  This is the total number of bikes at a given station
 		@biciclet.count
-		# @number_of_bikes_available + @number_of_bikes_broken
 	end
 
 
-	def slots_in_bikestation
-		@number_of_bikes_available + @number_of_empty_spaces + @number_of_bikes_broken
+	def number_of_empty_spaces
+		@number_of_slots - @biciclet.count
 	end
 
 
-	def sum_of_empty_spaces_and_bikes
-		number_of_bikes_in_bikestation + number_of_empty_spaces
+	def number_of_bikes_available #to rent
+		@biciclet.reject{|bike| bike.state =='broken'}.length
 	end
 
 	
-	def rent_bike(quantity_taken)
-		@number_of_bikes_available -= quantity_taken
-		@number_of_empty_spaces += quantity_taken
-		return @biciclet.pop
+	def rent_bike(bike_station = 'ref001')
+		@biciclet.pop(1)
 	end
 
-	def return_bike(quantity_returned)
-		@number_of_bikes_available += 1
-		@number_of_empty_spaces -= quantity_returned
-		return @biciclet.push(quantity_returned)
+
+	def return_bike(bike_station = 'ref001')
+		@biciclet.push(1)
 	end
 
 
 	def classify_as_broken
-		@number_of_bikes_available = @number_of_bikes_available - 1
-		@number_of_bikes_broken += 1
-		true 
+		@biciclet.last.change_bike_status('broken')
 	end 
 
 
@@ -64,7 +52,8 @@ class BikeStation
 	end
 
 	def bike_went_to_repair
-		@number_of_empty_spaces += 1
+		@biciclet.pop {|bike| bike.state =='broken'}
+		#pass this bike to inside the van.new ????
 	end
 
 

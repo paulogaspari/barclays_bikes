@@ -8,18 +8,18 @@ describe Users do
 
 
 	it 'should have one bike in use' do
-		users.bike_rented(1, bikestation)
-		expect(users.bikes_in_use).to eq (1)
+		users.bike_rented
+		expect(users.bikes_in_use).to satisfy {bikes_in_use.count == 1}
 	end
 
 	it 'could break one bike' do 
-		users.break_bike(1)
+		users.break_bike
 		expect(users.broken_bikes).to eq (1)
 	end 
 
 	it 'should return one broken bike' do 
-		users.bike_rented(1, bikestation)
-		users.return_broken_bike(1, bikestation)
+		users.bike_rented
+		users.return_broken_bike
 		expect(users.bikes_in_use).to eq (0)
 	end 
 

@@ -3,7 +3,7 @@ class Bike
 
 	attr_reader :state
 
-	def initialize
+	def initialize(status = 'new bike')
 		@state = 'new bike'
 		# @reference = reference
 	end
