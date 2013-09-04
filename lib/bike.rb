@@ -5,6 +5,7 @@ class Bike
 
 	def initialize
 		@state = 'new bike'
+		# @reference = reference
 	end
 
 	def change_bike_status(status)

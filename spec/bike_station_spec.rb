@@ -25,7 +25,7 @@ describe BikeStation do
 
 	context 'someone rents one bike and after someone returns another' do
 
-		it 'should have 19 bikes available' do	
+		it 'should have 9 bikes available' do	
 			bikestation.rent_bike(1)
 			expect(bikestation.number_of_bikes_in_bikestation).to eq (9)
 		end

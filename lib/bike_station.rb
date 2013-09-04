@@ -6,8 +6,8 @@ class BikeStation
 
 
 	def initialize(van)
-		@bike_station_array = [Bike.new, Bike.new, Bike.new, Bike.new, Bike.new, Bike.new, Bike.new, Bike.new, Bike.new, Bike.new, ]
 		@number_of_bikes_available = 10
+		@biciclet = [Bike.new] * @number_of_bikes_available
 		# this is the number of bikes that can be rented at a given station
 		@number_of_bikes_broken = 0
 		#  this is the number of bikes that are broken and cannot be rentes
@@ -24,7 +24,8 @@ class BikeStation
 
 	def number_of_bikes_in_bikestation
 	#  This is the total number of bikes at a given station
-		@number_of_bikes_available + @number_of_bikes_broken
+		@biciclet.count
+		# @number_of_bikes_available + @number_of_bikes_broken
 	end
 
 
@@ -41,12 +42,13 @@ class BikeStation
 	def rent_bike(quantity_taken)
 		@number_of_bikes_available -= quantity_taken
 		@number_of_empty_spaces += quantity_taken
-		# return @bikes.last
+		return @biciclet.pop
 	end
 
 	def return_bike(quantity_returned)
-		@number_of_bikes_available += quantity_returned
+		@number_of_bikes_available += 1
 		@number_of_empty_spaces -= quantity_returned
+		return @biciclet.push(quantity_returned)
 	end
 
 
