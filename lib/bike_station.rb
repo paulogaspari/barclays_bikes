@@ -52,7 +52,8 @@ class BikeStation
 	end
 
 	def bike_went_to_repair
-		@biciclet.pop {|bike| bike.state =='broken'}
+		@biciclet.pop {|bike| bike.state =='broken'}.bikes_in_transit
+
 		#pass this bike to inside the van.new ????
 	end
 
