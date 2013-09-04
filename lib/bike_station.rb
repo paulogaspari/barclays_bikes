@@ -9,7 +9,7 @@ class BikeStation
 	def initialize(van)
 		@number_of_slots = 10
 		@biciclet = [Bike.new, Bike.new, Bike.new, Bike.new, Bike.new, Bike.new, Bike.new, Bike.new, Bike.new, Bike.new, ] 
-		# this is the number of bikes that can be rented at a given station
+		# these are the bikes that can be rented at a given station
 		@van = van
 		# This is the van that is associated with this bike station. Each station
 		# has a dedicated van.
