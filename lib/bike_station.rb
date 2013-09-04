@@ -32,13 +32,13 @@ class BikeStation
 	end
 
 	
-	def rent_bike(bike_station = 'ref001')
+	def rent_bike
 		@biciclet.pop(1)
 	end
 
 
-	def return_bike(bike_station = 'ref001')
-		@biciclet.push(1)
+	def return_bike(bike)
+		@biciclet.push(bike)
 	end
 
 

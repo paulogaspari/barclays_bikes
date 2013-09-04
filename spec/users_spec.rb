@@ -19,7 +19,7 @@ describe Users do
 
 	it 'should return one broken bike' do 
 		users.bike_rented
-		users.return_broken_bike
+		users.return_bike
 		expect(users.bikes_in_use).to eq (0)
 	end 
 
@@ -30,7 +30,7 @@ describe Users do
 
 	it 'should return one bike undamaged' do 
 		users.bike_rented(1, bikestation)
-		users.return_good_bike(1, bikestation)
+		users.return_bike(1, bikestation)
 		expect(users.bikes_in_use).to eq (0)
 	end
 
@@ -41,7 +41,7 @@ describe Users do
 
 	it ' notifies the bike station when he returns a bike' do 
 		expect(bikestation).to receive :return_bike
-		users.return_good_bike(1, bikestation)
+		users.return_bike(1, bikestation)
 	end
 
 

@@ -12,18 +12,19 @@ class Users
 
 	end
 
-	def bike_rented(bike_station = 'ref001')
-		@bikes_in_use. push(Bike.new) #bike_station.rent_bike(bike_station) #add the bike object from bikestation_rentbike into the array
+	def bike_rented(bike_station)
+		@bikes_in_use.push(bike_station.rent_bike)
+		#bike_station.rent_bike(bike_station) #add the bike object from bikestation_rentbike into the array
 	end 
 
 	def break_bike
 		@bikes_in_use.last.change_bike_status('broken') #change the satus of the bike in that array to broken
 	end 
 
-	def return_broken_bike(quantity, bike_station)
-			@bikes_in_use -= quantity
-			@broken_bikes -= quantity
+	def return_bike(bike_station)
+		bike_station.return_bike(@bikes_in_use.pop)
 	end 
+
 
 	def return_good_bike(bike_station)
 		bike_station.return_bike(bike_station)
@@ -32,4 +33,6 @@ class Users
 
 
 
-end 
+end
+
+# central_bike_station = BikeStation.new
