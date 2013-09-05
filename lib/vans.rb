@@ -3,7 +3,8 @@ class Van
 attr_reader :num_bikes_repaired, :num_empty_spaces, :num_bikes_to_repair
 
 	def initialize
-		@bikes_in_transit = []
+		@bikes_being_transported = []
+
 		@num_bikes_to_repair = 0
 		@num_bikes_repaired = 0
 		@num_empty_spaces = 10
@@ -14,6 +15,11 @@ attr_reader :num_bikes_repaired, :num_empty_spaces, :num_bikes_to_repair
 	# 	dddd
 
 	# end
+
+	def bikes_in_transit(bike)
+		@bikes_being_transported < bike
+	end
+
 
 
 	def asked_for_pickup(quantity)

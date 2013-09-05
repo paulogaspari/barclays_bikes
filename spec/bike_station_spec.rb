@@ -3,11 +3,9 @@ require_relative '../lib/bike'
 
 
 describe BikeStation do
-	let(:van) { double(:van) }
+	let(:van) { double(:van , {:bikes_in_transit => 1 } ) }
 	let(:bikestation) { BikeStation.new(van) }
 	let(:bike) { Bike.new }
-
-
 
 	it 'has 10 bikes at start' do 
 		expect(bikestation.number_of_bikes_in_bikestation).to eq (10)
@@ -65,9 +63,12 @@ describe BikeStation do
 
 	context ' a broken bike gets picked up by the van' do
 
-		it 'should increase one empty space in the bike station' do
+		it 'should decrease one bike in the station' do
+		bikestation.classify_as_broken
+		bikestation.classify_as_broken
+
 		bikestation.bike_went_to_repair
-		expect(bikestation.number_of_empty_spaces).to eq(1)
+		expect(bikestation.biciclet.count).to eq(9)
 		end
 	end
 

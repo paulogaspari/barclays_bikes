@@ -17,8 +17,8 @@ class BikeStation
 
 
 	def number_of_bikes_in_bikestation
-		#  This is the total number of bikes at a given station
 		@biciclet.count
+		#  This is the total number of bikes at a given station
 	end
 
 
@@ -33,7 +33,7 @@ class BikeStation
 
 	
 	def rent_bike
-		@biciclet.pop(1)
+		@biciclet.pop
 	end
 
 
@@ -52,8 +52,9 @@ class BikeStation
 	end
 
 	def bike_went_to_repair
-		@biciclet.pop {|bike| bike.state =='broken'}.bikes_in_transit
-
+		@van.bikes_in_transit(@biciclet.select {|bike| bike.state =='broken'}.last)
+		print @biciclet.select {|bike| bike.state =='broken'}
+		@biciclet.delete_if {|bike| bike.state =='broken'}
 		#pass this bike to inside the van.new ????
 	end
 
